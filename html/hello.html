@@ -17,7 +17,7 @@
                 let request = new XMLHttpRequest()
                 let url1 = document.getElementById("url").value
                 let filename = document.getElementById("filename").value
-                let url = `http://127.0.0.1:5000/spotify/?url=${url1}&filename=${filename}`
+                let url = `https://apple-web.herokuapp.com/spotify/?url=${url1}&filename=${filename}`
                 let a = document.createElement('a')
                 a.href = url
                 a.text = "下載"
