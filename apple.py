@@ -17,7 +17,7 @@ def spotify():
     if str(url).startswith("https://open.spotify.com/track/"):
         cmd="spotdl -f dl/%s.{output-ext} --song %s"%(filename,url)
         subprocess.call(cmd, shell=True) 
-        w=flask.send_file(f"dl/{filename}.mp3")
+        w=flask.send_file(f"dl/{filename}.opus")
         return  w
     elif str(url).startswith("https://open.spotify.com/playlist"):
         cmd=f"spotdl --write-to dl/{filename}.txt --playlist {url}"
