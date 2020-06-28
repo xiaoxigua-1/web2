@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function ev() {
+            let op = document.getElementById("filename");
+            let op2 = document.getElementById("url");
+            if (op2.value === "") {
+                alert("請輸入網址")
+            } else if (op.value === "") {
+                alert("請輸入檔案名稱")
+            } else {
+                let request = new XMLHttpRequest()
+                let url1 = document.getElementById("url").value
+                let filename = document.getElementById("filename").value
+                let url = `http://127.0.0.1:5000/spotify/?url=${url1}&filename=${filename}`
+                let a = document.createElement('a')
+                a.href = url
+                a.text = "下載"
+                a.target = "_blank"
+                document.getElementById('a').appendChild(a)
+
+            }
+
+        }
+    </script>
+</head>
+
+<body style="background-color:aqua">
+    <h1 style="color: blueviolet;">請輸入spotify的網址</h1><input id="url" style="background-color: rgb(0, 102, 255);height: 35px;border-radius: 15px;border-color: 0,0,0,0;">
+    <h1 style="color: blueviolet;">請輸入下載檔案名稱</h1><input id="filename" style="background-color: rgb(0, 102, 255);height: 35px;border-radius: 15px;border-color: 0,0,0,0;">
+    <br>
+    <button onclick="ev()">下載</button>
+    <div id="a"></div>
+
+
+
+</body>
+
+</html>
