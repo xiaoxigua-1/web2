@@ -17,7 +17,7 @@ def spotify():
     if str(url).startswith("https://open.spotify.com/track/"):
         cmd="spotdl -f dl/%s.{output-ext} --song %s"%(filename,url)
         subprocess.call(cmd, shell=True) 
-        w=flask.send_file(f"dl\\{filename}.mp3")
+        w=flask.send_file(f"dl/{filename}.mp3")
         return  w
     elif str(url).startswith("https://open.spotify.com/playlist"):
         cmd=f"spotdl --write-to dl/{filename}.txt --playlist {url}"
@@ -26,7 +26,7 @@ def spotify():
         cmd="spotdl -f dl/%s/{track-name}.{output-ext} --list dl/%s.txt"%(filename,filename)
         subprocess.call(cmd, shell=True)
         os.remove(f"dl/{filename}.txt")
-        zipf=zipfile.ZipFile(f"dl\\{filename}.zip","w")
+        zipf=zipfile.ZipFile(f"dl/{filename}.zip","w")
         dlp=os.listdir(f"dl/{filename}")
         for p in dlp :
             zipf.write('dl/%s/%s'%(filename,p))
