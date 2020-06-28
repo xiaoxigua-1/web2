@@ -24,8 +24,6 @@ def spotify():
     if str(url).startswith("https://open.spotify.com/track/"):
         cmd="spotdl -f dl/%s.{output-ext} --song %s"%(filename,url)
         subprocess.call(cmd, shell=True) 
-        cmd=f"ffmpeg -i{filename}.opus {filename}.mp3"
-        subprocess.call(cmd, shell=True) 
         w=flask.send_file(f"dl/{filename}.opus")
         return  w
     elif str(url).startswith("https://open.spotify.com/playlist"):
