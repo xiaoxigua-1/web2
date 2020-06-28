@@ -26,7 +26,7 @@ def spotify():
         subprocess.call(cmd, shell=True) 
         cmd=f"ffmpeg -i{filename}.opus {filename}.mp3"
         subprocess.call(cmd, shell=True) 
-        w=flask.send_file(f"dl/{filename}.mp3")
+        w=flask.send_file(f"dl/{filename}.opus")
         return  w
     elif str(url).startswith("https://open.spotify.com/playlist"):
         cmd=f"spotdl --write-to dl/{filename}.txt --playlist {url}"
