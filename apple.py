@@ -17,7 +17,7 @@ def spotify():
     if str(url).startswith("https://open.spotify.com/track/"):
         cmd="spotdl -f dl\\%s.{output-ext} --song %s"%(filename,url)
         subprocess.call(cmd, shell=True) 
-        w=flask.send_file(f"dl\\{w2}.mp3")
+        w=flask.send_file(f"dl\\{filename}.mp3")
         return  w
     elif str(url).startswith("https://open.spotify.com/playlist"):
         cmd=f"spotdl --write-to dl\\{filename}.txt --playlist {url}"
@@ -31,7 +31,7 @@ def spotify():
         for p in dlp :
             zipf.write('dl\\%s\\%s'%(filename,p))
         shutil.rmtree(f"dl\\{filename}")
-        w=flask.send_file(f"dl\\{w2}.zip")
+        w=flask.send_file(f"dl\\{filename}.zip")
         return w
 def main():
     if __name__ == "__main__":
