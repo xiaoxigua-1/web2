@@ -6,6 +6,13 @@ import subprocess
 import zipfile
 import shutil
 app = Flask(__name__)
+@app.route("/")
+def hello():
+    return flask.send_file(f"html/hello.html")
+@app.route("/p/")
+def p():
+    return flask.send_file("w.mp3")
+
 @app.route("/spotify/")
 def spotify():
     url=flask.request.args.get("url")
@@ -17,7 +24,9 @@ def spotify():
     if str(url).startswith("https://open.spotify.com/track/"):
         cmd="spotdl -f dl/%s.{output-ext} --song %s"%(filename,url)
         subprocess.call(cmd, shell=True) 
-        w=flask.send_file(f"dl/{filename}.opus")
+        cmd=f"ffmpeg -i{filename}.opus {filename}.mp3"
+        subprocess.call(cmd, shell=True) 
+        w=flask.send_file(f"dl/{filename}.mp3")
         return  w
     elif str(url).startswith("https://open.spotify.com/playlist"):
         cmd=f"spotdl --write-to dl/{filename}.txt --playlist {url}"
